@@ -1,0 +1,253 @@
+/* ===== Global layout ===== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: radial-gradient(circle at top left, #0f172a 0, #020617 40%, #020617 100%);
+}
+
+/* Root container */
+.app-root {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+    "Segoe UI", sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  color: #e5e7eb;
+}
+
+/* ===== Header ===== */
+
+.app-header {
+  padding: 14px 24px;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.3);
+  backdrop-filter: blur(16px);
+  background: linear-gradient(
+    135deg,
+    rgba(15, 23, 42, 0.9),
+    rgba(30, 64, 175, 0.75)
+  );
+  box-shadow: 0 18px 45px rgba(15, 23, 42, 0.7);
+  position: sticky;
+  top: 0;
+  z-index: 20;
+}
+
+.app-header h1 {
+  margin: 0;
+  font-size: 22px;
+  letter-spacing: 0.03em;
+}
+
+.app-header p {
+  margin: 4px 0 0;
+  font-size: 13px;
+  color: #cbd5f5;
+}
+
+/* ===== Main layout ===== */
+
+.app-main {
+  display: flex;
+  flex: 1;
+  padding: 18px 20px 20px;
+  gap: 18px;
+}
+
+/* Card base style (PDF + Controls) */
+.pdf-section,
+.controls-section {
+  border-radius: 18px;
+  padding: 14px 14px 16px;
+  background: radial-gradient(circle at top left, #111827 0, #020617 60%);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  box-shadow:
+    0 18px 45px rgba(15, 23, 42, 0.85),
+    0 0 0 1px rgba(15, 23, 42, 0.6) inset;
+  position: relative;
+  overflow: hidden;
+}
+
+.pdf-section::before,
+.controls-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    circle at top right,
+    rgba(56, 189, 248, 0.12),
+    transparent 60%
+  );
+  mix-blend-mode: screen;
+  opacity: 0.7;
+}
+
+/* Section headings */
+.pdf-section > h2,
+.controls-section > h2 {
+  margin: 0 0 10px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #e5e7eb;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+/* Layout ratios */
+.pdf-section {
+  flex: 2;
+}
+
+.controls-section {
+  flex: 1;
+}
+
+/* ===== PDF area ===== */
+
+.pdf-wrapper {
+  margin-top: 6px;
+  border-radius: 14px;
+  display: inline-block;
+  padding: 6px;
+  position: relative;
+  background: radial-gradient(circle at top, #020617 0, #020617 40%, #020617);
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  box-shadow: 0 14px 35px rgba(15, 23, 42, 0.9);
+}
+
+/* Page canvas gets auto size; we just center it */
+.pdf-wrapper canvas {
+  border-radius: 10px;
+}
+
+/* Overlay where the Rnd lives */
+.pdf-overlay {
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  pointer-events: none;
+}
+
+.pdf-overlay > div {
+  pointer-events: auto;
+}
+
+/* Signature box itself is styled via inline styles in JSX */
+
+/* ===== Controls panel ===== */
+
+.controls-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.controls-section label {
+  font-size: 13px;
+  color: #cbd5f5;
+}
+
+.controls-section input[type="file"] {
+  margin-top: 4px;
+  font-size: 12px;
+  color: #e5e7eb;
+}
+
+.controls-section p {
+  margin: 0;
+}
+
+.controls-section small {
+  font-size: 11px;
+  color: #9ca3af;
+}
+
+/* JSON box */
+.controls-section pre {
+  border-radius: 10px;
+  border: 1px solid rgba(148, 163, 184, 0.3);
+  background: rgba(15, 23, 42, 0.9);
+  color: #d1fae5;
+}
+
+/* Button */
+.controls-section button {
+  margin-top: 4px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: none;
+  outline: none;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  cursor: pointer;
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+  color: #ecfdf5;
+  box-shadow:
+    0 8px 20px rgba(22, 163, 74, 0.45),
+    0 0 0 1px rgba(21, 128, 61, 0.7);
+  transition:
+    transform 0.08s ease-out,
+    box-shadow 0.12s ease-out,
+    filter 0.1s ease-out;
+}
+
+.controls-section button:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow:
+    0 12px 30px rgba(22, 163, 74, 0.5),
+    0 0 0 1px rgba(34, 197, 94, 0.9);
+  filter: brightness(1.03);
+}
+
+.controls-section button:active:not(:disabled) {
+  transform: translateY(0);
+  box-shadow:
+    0 6px 14px rgba(22, 163, 74, 0.5),
+    0 0 0 1px rgba(21, 128, 61, 0.9);
+}
+
+.controls-section button:disabled {
+  opacity: 0.6;
+  cursor: default;
+  box-shadow: none;
+}
+
+/* Signed link + hashes */
+.controls-section a {
+  font-size: 13px;
+  color: #38bdf8;
+  text-decoration: none;
+}
+
+.controls-section a:hover {
+  text-decoration: underline;
+}
+
+/* ===== Responsive tweaks ===== */
+
+@media (max-width: 900px) {
+  .app-main {
+    flex-direction: column;
+  }
+
+  .pdf-section,
+  .controls-section {
+    flex: none;
+  }
+
+  .pdf-wrapper {
+    width: 100%;
+  }
+
+  .pdf-wrapper canvas {
+    max-width: 100%;
+    height: auto !important;
+  }
+}
