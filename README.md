@@ -298,3 +298,13 @@ git push
 
 
 
+## 📹 Video Walkthrough
+A short Loom video demonstrates:
+- Responsive placement behavior
+- Coordinate conversion logic
+- PDF burn-in process
+- Audit trail creation
+  Link: https://www.loom.com/share/68f8c90fc1274c0685d07202511e17a8
+
+
+
