@@ -48,7 +48,7 @@ The focus of this assignment is solving the coordinate mismatch between browsers
 
 Field positions are stored as **percentages relative to the rendered PDF page**:
 
-```js
+``` js
 xPct = xPx / pageWidth
 yPct = yPx / pageHeight
 widthPct = boxWidthPx / pageWidth
@@ -230,3 +230,71 @@ Copy code
 git add README.md
 git commit -m "Add README."
 git push
+
+```
+
+🌐 Live Deployment
+🔹 Frontend (Vercel)
+
+The frontend of the Signature Injection Engine is deployed on Vercel.
+
+Live URL:
+
+[https://your-frontend-name.vercel.app](https://signature-injection-engine.vercel.app/)
+
+🔹 Backend (Render)
+
+The backend API is deployed on Render.
+
+Base API URL:
+
+[https://your-backend-name.onrender.com](https://signature-injection-engine.onrender.com)
+
+
+✅ The frontend communicates with the backend using the BASE_URL specified above.
+
+🔧 Environment Variables (Production)
+Frontend (Vercel)
+
+Set the following environment variable in Vercel → Project Settings → Environment Variables:
+
+VITE_BASE_URL=https://your-backend-name.onrender.com
+
+Backend (Render)
+
+Set the following environment variables in Render → Environment:
+
+PORT=5001
+MONGO_URI=mongodb+srv://<username>:<password>@<cluster>.mongodb.net/signature_engine
+BASE_URL=https://your-backend-name.onrender.com
+
+🔗 API Example (Production)
+POST https://your-backend-name.onrender.com/api/sign-pdf
+
+
+Response:
+
+{
+  "url": "https://your-backend-name.onrender.com/signed/signed-123.pdf",
+  "originalHash": "...",
+  "signedHash": "..."
+}
+
+✅ Deployment Notes
+
+Frontend is hosted on Vercel for fast global delivery
+
+Backend is hosted on Render with persistent API access
+
+MongoDB Atlas is used for audit trail storage
+
+Signed PDFs are served via a public backend URL
+
+✅ Final Git Commands
+git add README.md
+git commit -m "Add deployment links and production setup to README"
+git push
+
+
+
+
